@@ -20,6 +20,6 @@ const FormContainer = ({ action, children }:
     }
   }, [state]);
 
-  return <form action={formAction}>{children}</form>;
+  return <form className="gap-4 flex flex-col w-1/2" action={formAction}>{children}</form>;
 };
 export default FormContainer;
