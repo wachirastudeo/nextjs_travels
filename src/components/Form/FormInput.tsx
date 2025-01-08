@@ -5,7 +5,7 @@ interface FormInputProps {
   name: string;
   type: string;
   label?: string;
-  defaultValue?: string;
+  defaultValue?: string | number;
   placeHolder?: string;
 }
 const FormInput = ({

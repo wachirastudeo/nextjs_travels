@@ -1,6 +1,7 @@
 "use server";
 
 import {
+  landmarkSchema,
   profileSchema,
   validateWithZod,
 } from "@/utils/schemas";
@@ -75,7 +76,7 @@ export const createLandmarkAction = async (
       throw new Error("You must logged!!!");
     }
     const rawData = Object.fromEntries(formData);
-    // const validateField = validateWithZod(profileSchema, rawData);
+    const validateField = validateWithZod(landmarkSchema, rawData);
     console.log("validated", rawData);
 
    

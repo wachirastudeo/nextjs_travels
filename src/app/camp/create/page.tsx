@@ -28,7 +28,7 @@ const CreateCamp = async () => {
                         name="price"
                         label="Price"
                         type="number"
-                        placeHolder="Price" />
+                        placeHolder="Price" defaultValue={0} />
                     <Provinceinput />
                     <Maplandmark />
 
