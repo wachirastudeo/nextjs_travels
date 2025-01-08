@@ -1,26 +1,25 @@
-import { useActionState, useEffect } from "react"
-import { useToast } from "@/hooks/use-toast"
-import { actonFunction } from "@/utils/types"
-
+"use client";
+import { useActionState } from "react";
+import { useToast } from "@/hooks/use-toast";
+import { useEffect } from "react";
+import { actionFunction } from "@/utils/types";
 const initialState = {
-  message: ''
-}
+  message: "",
+};
 
-const FormContainer = ({ action, children }: { action: actonFunction, children: React.ReactNode }) => {
-  const [state, formAction] = useActionState(action, initialState)
+const FormContainer = ({ action, children }:
+  { action: actionFunction, children: React.ReactNode }) => {
   const { toast } = useToast();
+  const [state, formAction] = useActionState(action, initialState);
+  console.log("state ja", state);
 
   useEffect(() => {
+    // code body
     if (state.message) {
-      toast({ description: state.message })
+      toast({ description: state.message });
     }
-  }, [state])
+  }, [state]);
 
-  console.log('hello', state)
-  return (
-    <form action={formAction} className="flex flex-col gap-4">
-      {children}
-    </form>
-  )
-}
-export default FormContainer
+  return <form action={formAction}>{children}</form>;
+};
+export default FormContainer;
