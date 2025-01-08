@@ -19,5 +19,9 @@ interface DropdownListMenu {
     {
       label: "Camp",
       href: "/camp"
+    },
+    {
+      label: "Create Camp",
+      href: "/camp/create"
     }
   ]

@@ -7,7 +7,6 @@ import {
 import { clerkClient, currentUser } from "@clerk/nextjs/server";
 import db from "@/utils/db";
 import { redirect } from "next/navigation";
-import { revalidatePath } from "next/cache";
 
 const getAuthUser = async () => {
   // code body
@@ -30,12 +29,14 @@ export const createProfileAction = async (
   formData: FormData
 ) => {
   try {
-    const user = await currentUser();
-    if (!user) throw new Error("Please Login!!!");
-
+   
+    const user = await currentUser()
+    if (!user) {
+      throw new Error("You must logged!!!");
+    }
     const rawData = Object.fromEntries(formData);
     const validateField = validateWithZod(profileSchema, rawData);
-    console.log("validated", validateField);
+    // console.log("validated", validateField);
 
     await db.profile.create({
       data: {
@@ -45,12 +46,14 @@ export const createProfileAction = async (
         ...validateField,
       },
     });
-    const client = await clerkClient();
+    const client = await clerkClient()
+
     await client.users.updateUserMetadata(user.id, {
       privateMetadata: {
         hasProfile: true,
       },
-    });
+    })
+
     // return { message: "Create Profile Success!!!" };
   } catch (error) {
     // console.log(error);
@@ -59,6 +62,31 @@ export const createProfileAction = async (
   redirect("/");
 };
 
+
+
+export const createLandmarkAction = async (
+  prevState: any,
+  formData: FormData
+):Promise<{ message: string }> => {
+  try {
+   
+    const user = await currentUser()
+    if (!user) {
+      throw new Error("You must logged!!!");
+    }
+    const rawData = Object.fromEntries(formData);
+    // const validateField = validateWithZod(profileSchema, rawData);
+    console.log("validated", rawData);
+
+   
+   
+    return { message: "Create Landmark Success!!!" };
+  } catch (error) {
+    // console.log(error);
+    return renderError(error);
+  }
+  // redirect("/");
+};
 
 
 
