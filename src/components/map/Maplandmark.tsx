@@ -1,7 +1,8 @@
 'use client'
-import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
+import { MapContainer, Marker, Popup, TileLayer, useMapEvents } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
+import { useState } from 'react';
 
 const iconUrl =
     "https://unpkg.com/leaflet@1.9.3/dist/images/marker-icon-2x.png";
@@ -10,15 +11,35 @@ const markerIcon = L.icon({
     iconSize: [20, 30],
 });
 
+function LocationMarker() {
+    const [position, setPosition] = useState(null)
+    const map = useMapEvents({
+        click(e) {
+            map.locate()
+            setPosition(e.latlng)
+            map.flyTo(e.latlng, map.getZoom())
+        },
+        // locationfound(e) {
+        //     setPosition(e.latlng)
+        //     map.flyTo(e.latlng, map.getZoom())
+        // },
+    })
+
+    return position === null ? null : (
+        <Marker position={position} icon={markerIcon}>
+            <Popup>You are here</Popup>
+        </Marker>
+    )
+}
+
 
 const Maplandmark = () => {
-    const position = [14, 100]
 
     return (
         <MapContainer
-            center={position}
-            zoom={7}
-            scrollWheelZoom={true}
+            center={{ lat: 51.505, lng: -0.09 }}
+            zoom={13}
+            scrollWheelZoom={false}
             className='h-[50vh]'
 
         >
@@ -26,9 +47,7 @@ const Maplandmark = () => {
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            <Marker position={position} icon={markerIcon}>
-                <Popup>A pretty CSS3 popup. <br /> Easily customizable.</Popup>
-            </Marker>
+            <LocationMarker />
         </MapContainer>
     )
 }
