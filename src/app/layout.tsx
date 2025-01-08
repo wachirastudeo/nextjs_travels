@@ -3,7 +3,11 @@ import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
 import Providers from "./Providers";
 
-
+import {
+  ClerkProvider,
+ 
+} from '@clerk/nextjs'
+import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,13 +20,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    <ClerkProvider>
+
     <html lang="en" suppressHydrationWarning >
        <body>
           <Providers >
         <Navbar />
+        <main>
         {children}
+        </main>
+               <Toaster/>
+
+     
         </Providers>
       </body>
     </html>
+    </ClerkProvider>
+
   );
 }

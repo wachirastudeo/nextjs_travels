@@ -7,45 +7,61 @@ import {
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuPortal,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu";
+import Link from "next/link";
+import { links } from "@/utils/links";
+import SignOut from "./SignOut";
+import { SignInButton, SignedIn, SignedOut, SignUpButton } from "@clerk/nextjs";
+
 const DropdownListMenu = () => {
   return (
-    <DropdownMenu>
-    <DropdownMenuTrigger asChild>
-      <Button variant="outline">
-        <UserIcon  />
-        <Menu />
-      </Button>
-    </DropdownMenuTrigger>
-    <DropdownMenuContent className="w-56">
-      <DropdownMenuLabel>My Account</DropdownMenuLabel>
-      <DropdownMenuSeparator />
-      <DropdownMenuGroup>
-        <DropdownMenuItem>
-          Profile
-        </DropdownMenuItem>
-        <DropdownMenuItem>
-          Billing
-        </DropdownMenuItem>
-        <DropdownMenuItem>
-          Settings
-        </DropdownMenuItem>
-      
-      </DropdownMenuGroup>
-      <DropdownMenuSeparator />
-     
-      <DropdownMenuItem>
-        Log out
-      </DropdownMenuItem>
-    </DropdownMenuContent>
-  </DropdownMenu>
+    <>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button >
+            <UserIcon />
+
+            <Menu />
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent className="w-56">
+          <DropdownMenuLabel>My Account</DropdownMenuLabel>
+
+          <SignedOut>
+            <DropdownMenuItem>
+              <SignInButton mode="modal">
+                <button>Login</button>
+              </SignInButton>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <SignUpButton mode="modal">
+                <button>Register</button>
+              </SignUpButton>
+            </DropdownMenuItem>
+          </SignedOut>
+          <SignedIn>
+
+            <DropdownMenuGroup>
+              {links.map((link, index) => (
+                <DropdownMenuItem key={index}>
+                  <Link href={link.href}>{link.label}</Link>
+                </DropdownMenuItem>
+              ))}
+              <DropdownMenuSeparator />
+
+              <DropdownMenuItem>
+                <SignOut />
+              </DropdownMenuItem>
+            </DropdownMenuGroup>
+          </SignedIn>
+
+
+        </DropdownMenuContent>
+
+      </DropdownMenu>
+    </>
   );
 };
 export default DropdownListMenu;
