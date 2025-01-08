@@ -5,6 +5,7 @@ import FormContainer from "@/components/Form/FormContainer";
 import FormInput from "@/components/Form/FormInput";
 import Provinceinput from "@/components/Form/Provinceinput";
 import { TextAreaInput } from "@/components/Form/TextAreaInput";
+import Maplandmark from "@/components/map/Maplandmark";
 
 
 const CreateCamp = async () => {
@@ -29,6 +30,8 @@ const CreateCamp = async () => {
                         type="number"
                         placeHolder="Price" />
                     <Provinceinput />
+                    <Maplandmark />
+
                     <SubmitButton className="sm:w-min lg:w-full " text="Create Landmark" size='lg' />
 
                 </FormContainer>
