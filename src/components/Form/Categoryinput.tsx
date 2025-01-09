@@ -12,7 +12,7 @@ const Categoryinput = ({ defaultValue }: { defaultValue?: string }) => {
     const name = "category"
     return (
         <div className="mb-2 ">
-            <Label className="text-white capitalize" htmlFor={name} >{name}</Label>
+            <Label className=" capitalize" htmlFor={name} >{name}</Label>
             <Select
                 defaultValue={defaultValue || categories[0].label}
                 name={name}

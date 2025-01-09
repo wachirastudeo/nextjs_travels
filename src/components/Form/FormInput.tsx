@@ -17,7 +17,7 @@ const FormInput = ({
 }: FormInputProps) => {
   return (
     <div>
-      <Label className="text-white" htmlFor={name}>{label}</Label>
+      <Label className="" htmlFor={name}>{label}</Label>
       <Input
         type={type}
         id={name}
