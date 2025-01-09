@@ -1,6 +1,7 @@
 "use server";
 
 import {
+  imageSchema,
   landmarkSchema,
   profileSchema,
   validateWithZod,
@@ -71,15 +72,12 @@ export const createLandmarkAction = async (
 ):Promise<{ message: string }> => {
   try {
    
-    const user = await currentUser()
-    if (!user) {
-      throw new Error("You must logged!!!");
-    }
+    const user = await getAuthUser(); 
     const rawData = Object.fromEntries(formData);
-    const validateField = validateWithZod(landmarkSchema, rawData);
-    console.log("validated", rawData);
-
-   
+    const file = formData.get("image") as File;
+    console.log( rawData);
+    const validateField = validateWithZod(imageSchema, { image: file });
+    console.log("validated", validateField);
    
     return { message: "Create Landmark Success!!!" };
   } catch (error) {
@@ -88,6 +86,8 @@ export const createLandmarkAction = async (
   }
   // redirect("/");
 };
+
+
 
 
 
