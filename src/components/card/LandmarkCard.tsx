@@ -6,9 +6,13 @@ const LandmarkCard = ({ Landmark }) => {
         <article className="group relative">
             <div className="relative h-[300px]">
                 {name}
-                <Image src={image} layout="fill" objectFit="cover
-                " alt={name}
-                    sizes="(max-with: 768px) 100vw, (max-with: 1200px) 50vw, 33vw" />
+                <Image
+                    src={image}
+                    alt={name}
+                    sizes="(max-width: 768px) 100vw ,50vw"
+                    fill
+                    className="object-cover"
+                />
             </div>
         </article>
     )

@@ -10,16 +10,17 @@ const nextConfig: NextConfig = {
     }
   },
   reactStrictMode: false,
-
-  images: {
+  images: { 
     remotePatterns:[
-  imagdommm
-      prootot:"1
+      {
+        protocol: 'https',
+        hostname: 'ykyruobglrtrygolkrsb.supabase.co',
+        
+      }
     ]
-    domains: ["images.unsplash.com"], 
-    shostmem 
-
-  },
+  }
+  
+  
 };
 
 export default nextConfig;
