@@ -12,7 +12,10 @@ export async function uploadFile(image: File) {
 
   const { data, error } = await supabase.storage
   .from(bucket)
-  .upload(newName, image)
+  .upload(newName, image,{
+      cacheControl: '3600',
+      upsert: false,
+  })
     if(!data) throw new Error("Failed to upload file") //error
  
 
