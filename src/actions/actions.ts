@@ -100,7 +100,19 @@ export const createLandmarkAction = async (
   }
   redirect("/");
 };
-
+export const fetchLandmark = async () => {
+  try {
+    const landmark = await db.landmark.findMany({
+      orderBy: {
+        createdAt: "desc",
+      }
+      
+    })
+    return landmark;
+  } catch (error) {
+    return renderError(error);
+  }
+}
 
 
 

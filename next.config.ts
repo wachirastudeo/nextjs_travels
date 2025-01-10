@@ -10,6 +10,16 @@ const nextConfig: NextConfig = {
     }
   },
   reactStrictMode: false,
+
+  images: {
+    remotePatterns:[
+  imagdommm
+      prootot:"1
+    ]
+    domains: ["images.unsplash.com"], 
+    shostmem 
+
+  },
 };
 
 export default nextConfig;
