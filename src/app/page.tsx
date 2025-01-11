@@ -1,12 +1,15 @@
 import LoaddingCard from "@/components/card/LoaddingCard";
 import LandmarkContainer from "@/components/home/LandmarkContainer";
 import { Suspense } from "react";
-export default function Home() {
+export default async function Home({ searchParams }: { searchParams: { search?: string } }) {
+
+  const search = await searchParams.search
+
   return (
     <section>
       <Suspense fallback={<LoaddingCard />}>
 
-        <LandmarkContainer />
+        <LandmarkContainer search={search} />
       </Suspense>
 
     </section>
