@@ -3,7 +3,7 @@ import { LandmarkCardProps } from "@/utils/types"
 import Image from "next/image"
 import LandmarkRating from "./LandmarkRating"
 const LandmarkCard = ({ landmark }: { landmark: LandmarkCardProps }) => {
-    const { name, image, id, province, price, lat, lng, category } = landmark
+    const { name, image, id, description, province, price, lat, lng, category } = landmark
     return (
         <article className="group relative">
             <div className="relative h-[300px] rounded-md mb-2">
@@ -17,10 +17,19 @@ const LandmarkCard = ({ landmark }: { landmark: LandmarkCardProps }) => {
                 />
             </div>
             <div className="flex  justify-between items-center">
-                <h3 className="text-sm font-semibold mt-1">{name} </h3>
+                <h3 className="text-sm font-semibold mt-1">{name.substring(0, 30)} </h3>
                 <LandmarkRating />
             </div>
-        </article>
+
+            <p className="text-sm text-muted-foreground">
+                {description.substring(0, 100)}
+            </p>
+            <div className="mt-2 flex justify-between items-center">
+                <span className="font-semibold text-sm">ราคา : {price}</span>
+
+                <span className="font-semibold text-sm ">{province}</span>
+            </div>
+        </article >
     )
 }
 export default LandmarkCard
