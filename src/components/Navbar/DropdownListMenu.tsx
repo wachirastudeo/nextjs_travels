@@ -20,7 +20,7 @@ const DropdownListMenu = () => {
     <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button >
+          <Button className="bg-teal-700 hover:bg-teal-600">
             <UserIcon />
 
             <Menu />

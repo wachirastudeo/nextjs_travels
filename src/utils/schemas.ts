@@ -9,10 +9,10 @@ export const profileSchema = z.object({
 });
 
 const validateImage = () => {
-  const maxFileSize = 1024 * 1024;
+  const maxFileSize = 2024 * 2024;
   return z.instanceof(File).refine((file) => {
     return file.size <= maxFileSize;
-  }, "File size must be less than 1MB");
+  }, "File size must be less than 2MB");
 };
 
 export const imageSchema = z.object({

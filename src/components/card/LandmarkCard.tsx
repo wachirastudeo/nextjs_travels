@@ -6,8 +6,8 @@ import FavoriteToggleButton from "./FavoriteToggleButton"
 const LandmarkCard = ({ landmark }: { landmark: LandmarkCardProps }) => {
     const { name, image, id, description, province, price, lat, lng, category } = landmark
     return (
-        <article className="group relative">
-            <div className="relative h-[300px] rounded-md mb-2">
+        <article className="group relative flex flex-col min-h-[400px] mb-4  ">
+            <div className="relative h-[300px]  rounded-md mb-2 ">
                 {name}
                 <Image
                     src={image}
@@ -25,10 +25,10 @@ const LandmarkCard = ({ landmark }: { landmark: LandmarkCardProps }) => {
             </div>
 
             <p className="text-sm text-muted-foreground">
-                {description.substring(0, 100)}
+                {description.length > 100 ? `${description.substring(0, 100)}...` : description}
             </p>
-            <div className="mt-2 flex justify-between items-center">
-                <span className="font-semibold text-sm">ราคา : {price}</span>
+            <div className="mt-auto flex justify-between items-center">
+                <span className="font-semibold text-sm">ราคา : {price} บาท</span>
 
                 <span className="font-semibold text-sm ">{province}</span>
             </div>

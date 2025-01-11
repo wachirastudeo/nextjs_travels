@@ -5,7 +5,7 @@ import Providers from "./Providers";
 
 import {
   ClerkProvider,
- 
+
 } from '@clerk/nextjs'
 import { Toaster } from "@/components/ui/toaster";
 
@@ -22,19 +22,19 @@ export default function RootLayout({
   return (
     <ClerkProvider>
 
-    <html lang="en" suppressHydrationWarning >
-       <body>
+      <html lang="en" suppressHydrationWarning >
+        <body>
           <Providers >
-        <Navbar />
-        <main>
-        {children}
-        </main>
-               <Toaster/>
+            <Navbar />
+            <main className="container">
+              {children}
+            </main>
+            <Toaster />
 
-     
-        </Providers>
-      </body>
-    </html>
+
+          </Providers>
+        </body>
+      </html>
     </ClerkProvider>
 
   );
