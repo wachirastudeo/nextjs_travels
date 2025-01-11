@@ -5,6 +5,7 @@ export default function Home() {
   return (
     <section>
       <Suspense fallback={<LoaddingCard />}>
+
         <LandmarkContainer />
       </Suspense>
 

@@ -190,6 +190,21 @@ export const fetchFavorite = async () => {
 
 
 
+export const fetchLandmarksHero = async () => {
+  try {
+    const landmark = await db.landmark.findMany({
+      take: 4,
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+    return landmark;
+  } catch (error) {
+    return renderError(error);
+  }
+
+ 
+};
 
 
 

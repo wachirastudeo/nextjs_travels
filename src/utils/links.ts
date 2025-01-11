@@ -17,11 +17,11 @@ interface DropdownListMenu {
       href: "/favorites"
     },
     {
-      label: "Camp",
+      label: "Landmark",
       href: "/camp"
     },
     {
-      label: "Create Camp",
+      label: "Create Landmark",
       href: "/camp/create"
     }
   ]
