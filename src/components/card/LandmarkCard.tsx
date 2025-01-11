@@ -2,6 +2,7 @@
 import { LandmarkCardProps } from "@/utils/types"
 import Image from "next/image"
 import LandmarkRating from "./LandmarkRating"
+import FavoriteToggleButton from "./FavoriteToggleButton"
 const LandmarkCard = ({ landmark }: { landmark: LandmarkCardProps }) => {
     const { name, image, id, description, province, price, lat, lng, category } = landmark
     return (
@@ -15,10 +16,12 @@ const LandmarkCard = ({ landmark }: { landmark: LandmarkCardProps }) => {
                     fill
                     className="object-cover rounded-md group-hover:scale-105 transition-transform duration-500"
                 />
+
             </div>
             <div className="flex  justify-between items-center">
                 <h3 className="text-sm font-semibold mt-1">{name.substring(0, 30)} </h3>
                 <LandmarkRating />
+
             </div>
 
             <p className="text-sm text-muted-foreground">
@@ -28,6 +31,10 @@ const LandmarkCard = ({ landmark }: { landmark: LandmarkCardProps }) => {
                 <span className="font-semibold text-sm">ราคา : {price}</span>
 
                 <span className="font-semibold text-sm ">{province}</span>
+            </div>
+            <div className="absolute top-3 right-1 z-10">
+                <FavoriteToggleButton landmarkId={id} />
+
             </div>
         </article >
     )

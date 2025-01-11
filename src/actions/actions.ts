@@ -10,6 +10,7 @@ import { clerkClient, currentUser } from "@clerk/nextjs/server";
 import db from "@/utils/db";
 import { redirect } from "next/navigation";
 import { uploadFile } from "@/utils/supabase";
+import { revalidatePath } from 'next/cache';
 
 const getAuthUser = async () => {
   // code body
@@ -109,6 +110,54 @@ export const fetchLandmark = async () => {
       
     })
     return landmark;
+  } catch (error) {
+    return renderError(error);
+  }
+}
+
+export const fetchFavoriteId = async ({landmarkId}:{landmarkId:string})=>{
+
+  const user = await getAuthUser();
+  const favorite = await db.favorite.findFirst({
+    where:{
+      landmarkId: landmarkId,
+      profileId: user.id
+    },select:{
+      id: true
+    }
+  })
+  return favorite?.id || null
+}
+
+export const toggleFavoriteAction = async (prevState:{
+  favoriteId: string | null;
+  landmarkId: string;
+  pathname: string;
+})=>{
+  const user = await getAuthUser();
+  const {favoriteId, landmarkId, pathname} = prevState;
+  try {   
+
+    //delete favorite
+    if(favoriteId){
+        await db.favorite.delete({ 
+          where:{
+            id: favoriteId
+          }
+        })
+        }
+        else{
+          await db.favorite.create({
+            data:{
+              landmarkId,
+              profileId:user.id
+            }
+          })
+        }
+        revalidatePath(pathname)
+        return {message:favoriteId? "remove favorite": "add favorite"}
+
+    
   } catch (error) {
     return renderError(error);
   }
