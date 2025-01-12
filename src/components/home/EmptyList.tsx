@@ -6,7 +6,7 @@ const EmptyList = ({ headding = 'No item', message = 'Please try again', btnText
         <div>
             <h1 className="text-2xl font-semibold ">{headding}</h1>
             <p className="text-lg mb-4"> {message}</p>
-            <Link href='/'> <Button variant="outline" >{btnText}</Button></Link>
+            <Link href='/'> <Button asChild variant="outline" >{btnText}</Button></Link>
         </div>
     )
 }

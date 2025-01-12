@@ -30,7 +30,8 @@ const LandmarkContainer = async ({ search, category }: { search?: string, catego
                 <CategoriesList search={search} category={category} />
 
                 {
-                    landmarks.length === 0 ? <EmptyList />
+                    landmarks.length === 0 ?
+                        <EmptyList headding="no result" btnText="Clear Filter" />
                         : <LandmarkList landmarks={landmarks} />
 
                 }
