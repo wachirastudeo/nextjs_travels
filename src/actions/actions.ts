@@ -69,29 +69,27 @@ export const createProfileAction = async (
 export const createLandmarkAction = async (
   prevState: any,
   formData: FormData
-):Promise<{ message: string }> => {
+): Promise<{ message: string }> => {
   try {
-   
-    const user = await getAuthUser(); 
+    const user = await getAuthUser();
     const rawData = Object.fromEntries(formData);
     const file = formData.get("image") as File;
-    // console.log( rawData);
-    const validateFile = validateWithZod(imageSchema, { image: file });
 
+    // Step 1 Validate Data
+    const validatedFile = validateWithZod(imageSchema, { image: file });
     const validateField = validateWithZod(landmarkSchema, rawData);
-    
-    const fullPath= await uploadFile(validateFile.image);
 
+    // Step 2 Upload Image to Supabase
+    const fullPath = await uploadFile(validatedFile.image);
+    // console.log(fullPath);
+    // Step 3 Insert to DB
     await db.landmark.create({
       data: {
         ...validateField,
         image: fullPath,
         profileId: user.id,
-        
       },
     });
-
-   
     // return { message: "Create Landmark Success!!!" };
   } catch (error) {
     // console.log(error);
@@ -99,6 +97,7 @@ export const createLandmarkAction = async (
   }
   redirect("/");
 };
+
 export const fetchLandmarks = async ({
   search = "",
   category,
