@@ -53,7 +53,7 @@ const MapLandmark = ({
     // console.log(position);
     return (
         <>
-            <h1 className="mt-2  text-white">Where are you?</h1>
+            <h1 className="mt-4 font-semibold">Where are you?</h1>
 
             <input type="hidden" name="lat" value={position ? position[0] : ""} />
 
@@ -65,11 +65,11 @@ const MapLandmark = ({
                 zoom={7}
                 scrollWheelZoom={true}
             >
-                {/* <Marker position={location || defaultLocation} icon={markerIcon}>
+                <Marker position={location || defaultLocation} icon={markerIcon}>
                     <Popup>
                         A pretty CSS3 popup. <br /> Easily customizable.
                     </Popup>
-                </Marker> */}
+                </Marker>
 
                 <LocationMarker position={position} setPosition={setPosition} />
 

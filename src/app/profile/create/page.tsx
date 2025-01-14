@@ -16,10 +16,10 @@ const CreateProfile = async () => {
       <div className="border p-8 rounded-md">
 
         <FormContainer action={createProfileAction}>
-          <div className="flex gap-4 mt-4">
+          <div className="grid md:grid-cols-2 gap-4 mt-4">
             <FormInput name="firstName" label="Fist Name" type="text" placeHolder="First Name" />
             <FormInput name="lastName" label="Last Name" type="text" placeHolder="Last Name" />
-            <FormInput name="username" label="Username" type="text" placeHolder="Username" />
+            <FormInput name="userName" label="Username" type="text" placeHolder="Username" />
           </div>
           <SubmitButton text="create profile" size='lg' />
         </FormContainer>
