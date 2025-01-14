@@ -18,7 +18,7 @@ const CreateCamp = async () => {
 
                 <FormContainer action={createLandmarkAction}>
                     <div className=" gap-4 mt-4 ">
-                        <FormInput name="name" label="Landmark Name" type="text" placeHolder="Landmark Name" />
+                        <FormInput name="name" label="Landmark Name" type="text" placeholder="Landmark Name" />
                     </div>
 
                     {/* category */}
@@ -29,7 +29,7 @@ const CreateCamp = async () => {
                         name="price"
                         label="Price"
                         type="number"
-                        placeHolder="Price" defaultValue={0} />
+                        placeholder="Price" defaultValue={0} />
                     <Provinceinput />
                     <Imageinput />
                     <Maplandmark />
