@@ -215,6 +215,21 @@ export const fetchLandmarksHero = async () => {
 };
 
 
+export const fetchLandmarkDetail = async ({id}:{id:string}) => {
+
+  return db.landmark.findFirst(
+    {
+      where: {
+        id
+      },
+      include: {
+        profile: true
+      }
+    }
+
+  )
+
+}
 
 
 
