@@ -11,7 +11,7 @@ const FormContainer = ({ action, children }:
   { action: actionFunction, children: React.ReactNode }) => {
   const { toast } = useToast();
   const [state, formAction] = useActionState(action, initialState);
-  console.log("state ja", state);
+  // console.log("state ja", state);
 
   useEffect(() => {
     // code body
@@ -20,6 +20,6 @@ const FormContainer = ({ action, children }:
     }
   }, [state]);
 
-  return <form className="gap-4 flex flex-col w-full px-2" action={formAction}>{children}</form>;
+  return <form action={formAction}>{children}</form>;
 };
 export default FormContainer;

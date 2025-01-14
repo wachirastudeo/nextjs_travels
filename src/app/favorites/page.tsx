@@ -4,7 +4,6 @@ import LandmarkList from "@/components/home/LandmarkList"
 
 const FavoritesPage = async () => {
     const favorites = await fetchFavorite()
-    console.log(favorites)
     if (favorites.length === 0) {
         return (
             <EmptyList headding="No Favorite" message="Please try again" btnText="Back Home" />

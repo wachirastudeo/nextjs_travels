@@ -1,8 +1,8 @@
 'use client';
 import { toggleFavoriteAction } from "@/actions/actions"
-import FormContainer from "../Form/FormContainer"
+import FormContainer from "../form/FormContainer"
 import { usePathname } from "next/navigation";
-import { CardSubmitButton } from "../Form/Buttons";
+import { CardSubmitButton } from "../form/Buttons";
 interface FavoriteToggleFormProps {
     favoriteId: string | null;
     landmarkId: string;

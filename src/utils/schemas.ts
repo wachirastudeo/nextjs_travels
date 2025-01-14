@@ -5,7 +5,7 @@ import { z, ZodSchema } from "zod";
 export const profileSchema = z.object({
   firstName: z.string().min(2, { message: "ชื่อ ต้องมากกว่า 2 อักขระ" }),
   lastName: z.string().min(2, { message: "นามสกุล ต้องมากกว่า 2 อักขระ" }),
-  userName: z.string().min(2, { message: "username ต้องมากกว่า 2 อักขระ" }),
+  userName: z.string().min(2, { message: "user name ต้องมากกว่า 2 อักขระ" }),
 });
 
 const validateImage = () => {

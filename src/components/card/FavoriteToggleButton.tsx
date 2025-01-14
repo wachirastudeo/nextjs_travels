@@ -1,4 +1,4 @@
-import { SignInCardButton } from "../Form/Buttons"
+import { SignInCardButton } from "../form/Buttons"
 import { auth } from '@clerk/nextjs/server'
 import { fetchFavoriteId } from "@/actions/actions"
 import FavoriteToggleForm from "./FavoriteToggleForm"

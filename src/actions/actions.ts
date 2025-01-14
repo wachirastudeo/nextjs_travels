@@ -28,19 +28,20 @@ const renderError = (error: unknown): { message: string } => {
     message: error instanceof Error ? error.message : "An Error!!!",
   };
 };
+
 export const createProfileAction = async (
   prevState: any,
   formData: FormData
 ) => {
   try {
-   
-    const user = await currentUser()
-    if (!user) {
-      throw new Error("You must logged!!!");
-    }
+    const user = await currentUser();
+    if (!user) throw new Error("Please Login!!!");
+
     const rawData = Object.fromEntries(formData);
+    console.log('rawData',rawData);
+
     const validateField = validateWithZod(profileSchema, rawData);
-    // console.log("validated", validateField);
+    console.log('validateField',validateField);
 
     await db.profile.create({
       data: {
@@ -50,14 +51,12 @@ export const createProfileAction = async (
         ...validateField,
       },
     });
-    const client = await clerkClient()
-
+    const client = await clerkClient();
     await client.users.updateUserMetadata(user.id, {
       privateMetadata: {
         hasProfile: true,
       },
-    })
-
+    });
     // return { message: "Create Profile Success!!!" };
   } catch (error) {
     // console.log(error);
@@ -65,7 +64,6 @@ export const createProfileAction = async (
   }
   redirect("/");
 };
-
 
 
 export const createLandmarkAction = async (
@@ -196,6 +194,26 @@ export const fetchFavorite = async () => {
   return favorites.map((favorite)=>favorite.landmark);
 }
 
+export const fetchMylandmark = async () => {
+  const user = await getAuthUser();
+  const mylandmarks = await db.landmark.findMany({
+    where: {
+      profileId: user.id,
+    },
+    select:{
+          id: true, 
+          name: true,
+          description: true,
+          image: true,
+          price: true,
+          province: true,
+          lat: true,
+          lng: true,
+          category: true
+    }
+  });
+  return mylandmarks
+}
 
 
 export const fetchLandmarksHero = async () => {

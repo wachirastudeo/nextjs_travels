@@ -1,29 +1,24 @@
-import { Input } from "../ui/input";
-import { Label } from "../ui/label";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
-interface FormInputProps {
+type FormInputProps = {
   name: string;
   type: string;
   label?: string;
-  defaultValue?: string | number;
-  placeHolder?: string;
-}
-const FormInput = ({
-  name,
-  label,
-  type,
-  defaultValue,
-  placeHolder,
-}: FormInputProps) => {
+  defaultValue?: string;
+  placeholder?: string;
+};
+
+const FormInput = (props: FormInputProps) => {
+  const { name, type, label, defaultValue, placeholder } = props;
   return (
-    <div>
-      <Label className="" htmlFor={name}>{label}</Label>
+    <div className="mb-2">
+      <Label htmlFor={name}> {label} </Label>
       <Input
-        type={type}
-        id={name}
         name={name}
+        type={type}
+        placeholder={placeholder}
         defaultValue={defaultValue}
-        placeholder={placeHolder}
       />
     </div>
   );
