@@ -1,10 +1,10 @@
 import { createLandmarkAction } from "@/actions/actions";
-import { SubmitButton } from "@/components/form/Buttons";
 import Categoryinput from "@/components/form/Categoryinput";
 import FormContainer from "@/components/form/FormContainer";
 import FormInput from "@/components/form/FormInput";
 import Imageinput from "@/components/form/Imageinput";
 import Provinceinput from "@/components/form/Provinceinput";
+import SubmitButton from "@/components/form/SubmitButton";
 import { TextAreaInput } from "@/components/form/TextAreaInput";
 import Maplandmark from "@/components/map/Maplandmark";
 
