@@ -1,5 +1,4 @@
 import type { NextConfig } from "next";
-import path from 'path';
 
 const nextConfig: NextConfig = {
   experimental: {
@@ -21,10 +20,7 @@ const nextConfig: NextConfig = {
       }
     ]
   },
-  webpack(config) {
-    config.resolve.alias['@'] = path.resolve(__dirname, 'src');
-    return config;
-  }
+ 
 } satisfies NextConfig;
 
 export default nextConfig;
