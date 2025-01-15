@@ -10,6 +10,7 @@
       "hooks/*": ["hooks/*"],  // alias hooks ชี้ไปที่ src/hooks/
       "utils/*": ["utils/*"]   // alias utils ชี้ไปที่ src/utils/
     },
+    
     "target": "ES2017",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
