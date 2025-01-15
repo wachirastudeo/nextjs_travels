@@ -6,6 +6,8 @@
       "@/actions/*":["actions/*"],
       "@/lib/*":["lib/*"],
       "../*": ["components/*"],
+      "@/hooks/*":["hooks/*"],
+      "@/utils/*":["utils/*"],
 
     }, 
     "target": "ES2017",
