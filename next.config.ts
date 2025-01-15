@@ -1,5 +1,4 @@
 import { NextConfig } from 'next';
-import path from 'path';
 
 const nextConfig: NextConfig = {
   // ตั้งค่า experimental ฟีเจอร์ที่ต้องการ
