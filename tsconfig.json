@@ -1,11 +1,10 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-   "paths": {
-         "@/*": [
-           "./*" // -> change the path to what you you want
-         ]
-      },  
+  "paths": {
+      "@/*": ["./*"],
+      "@/components/*": ["components/*"]
+    },  
     "target": "ES2017",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
