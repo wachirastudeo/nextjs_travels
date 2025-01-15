@@ -2,7 +2,7 @@
 import { toggleFavoriteAction } from "@/actions/actions"
 import FormContainer from "src/components/form/FormContainer"
 import { usePathname } from "next/navigation";
-import { CardSubmitButton } from "src/components/form/Buttons";
+import CardSubmitButton from "../form/CardSubmitButton";
 interface FavoriteToggleFormProps {
     favoriteId: string | null;
     landmarkId: string;
