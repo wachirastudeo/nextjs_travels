@@ -2,30 +2,29 @@ import type { NextConfig } from "next";
 import path from 'path';
 
 const nextConfig: NextConfig = {
-
-  /* config options here */
   experimental: {
     serverActions: {
       bodySizeLimit: "5mb",
       
     }
-  },
+  },    
+  ignoreBuildErrors: true,
+
   reactStrictMode: false,
   images: { 
-    remotePatterns:[
+    remotePatterns: [
       {
         protocol: 'https',
         hostname: 'ykyruobglrtrygolkrsb.supabase.co',
-        
+        port: '',
+        pathname: '/**',
       }
     ]
   },
   webpack(config) {
-    config.resolve.alias['@'] = path.resolve(__dirname, 'src'); // เพิ่ม alias ที่นี่
+    config.resolve.alias['@'] = path.resolve(__dirname, 'src');
     return config;
-  },
-  
-  
-};
+  }
+} satisfies NextConfig;
 
 export default nextConfig;

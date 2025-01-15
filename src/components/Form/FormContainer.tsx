@@ -1,30 +1,31 @@
 "use client";
-import { useEffect } from "react";
-import { useToast } from "@/hooks/use-toast";
 import { useActionState } from "react";
-import { actionFunction } from "@/utils/types";
+import { useToast } from "@/hooks/use-toast";
+import { useEffect } from "react";
+import { ActionFunction } from "@/utils/types"; // Updated to use consistent naming
 
+// Ensure initialState matches expected state structure in useActionState
 const initialState = {
   message: "",
+  formValues: {},
 };
 
-interface FormContainerProps {
-  action: actionFunction;
+const FormContainer = ({ action, children }: {
+  action: ActionFunction; // Ensure ActionFunction matches useActionState expectations
   children: React.ReactNode;
-}
-
-const FormContainer = ({ action, children }: FormContainerProps) => {
+}) => {
   const { toast } = useToast();
+
+  // Ensure action and initialState align with useActionState definition
   const [state, formAction] = useActionState(action, initialState);
 
   useEffect(() => {
     if (state.message) {
       toast({ description: state.message });
     }
-  }, [state.message, toast]); // ใส่ `toast` ใน dependency array
+  }, [state, toast]); // Ensure dependencies are correct
 
   return <form action={formAction}>{children}</form>;
 };
-
 
 export default FormContainer;

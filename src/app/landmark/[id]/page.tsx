@@ -8,8 +8,11 @@ import MapLandmark from "@/components/map/Maplandmark";
 import { redirect } from "next/navigation";
 
 // rafce
-const LandmarkDetail = async ({ params }: { params: { id: string } }) => {
-    const { id } = params; // No need to await here
+type Params = Promise<{ id: string }>
+
+const LandmarkDetail = async ({ params }: { params: Params }) => {
+
+    const { id } = await params; // No need to await here
     const landmark = await fetchLandmarkDetail({ id });
 
     if (!landmark) {

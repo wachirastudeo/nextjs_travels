@@ -10,7 +10,7 @@ import { clerkClient, currentUser } from "@clerk/nextjs/server";
 import db from "@/utils/db";
 import { redirect } from "next/navigation";
 import { uploadFile } from "@/utils/supabase";
-import { revalidatePath } from 'next/cache';
+import { revalidatePath } from "next/cache";
 
 const getAuthUser = async () => {
   // code body
@@ -28,9 +28,8 @@ const renderError = (error: unknown): { message: string } => {
     message: error instanceof Error ? error.message : "An Error!!!",
   };
 };
-
 export const createProfileAction = async (
-  prevState: undefined,
+  prevState: unknown,
   formData: FormData
 ) => {
   try {
@@ -38,10 +37,8 @@ export const createProfileAction = async (
     if (!user) throw new Error("Please Login!!!");
 
     const rawData = Object.fromEntries(formData);
-    console.log('rawData',rawData);
-
     const validateField = validateWithZod(profileSchema, rawData);
-    console.log('validateField',validateField);
+    // console.log("validated", validateField);
 
     await db.profile.create({
       data: {
@@ -65,9 +62,8 @@ export const createProfileAction = async (
   redirect("/");
 };
 
-
 export const createLandmarkAction = async (
-  prevState: undefined,
+  prevState: unknown,
   formData: FormData
 ): Promise<{ message: string }> => {
   try {
@@ -119,65 +115,77 @@ export const fetchLandmarks = async ({
   });
   return landmarks;
 };
+export const fetchLandmarksHero = async () => {
+  const landmarks = await db.landmark.findMany({
+    orderBy: {
+      createdAt: "desc",
+    },
+    take: 5,
+  });
+  return landmarks;
+};
 
-export const fetchFavoriteId = async ({landmarkId}:{landmarkId:string})=>{
-
+export const fetchFavoriteId = async ({
+  landmarkId,
+}: {
+  landmarkId: string;
+}) => {
   const user = await getAuthUser();
   const favorite = await db.favorite.findFirst({
-    where:{
+    where: {
       landmarkId: landmarkId,
-      profileId: user.id
-    },select:{
-      id: true
-    }
-  })
-  return favorite?.id || null
-}
+      profileId: user.id,
+    },
+    select: {
+      id: true,
+    },
+  });
+  return favorite?.id || null;
+};
 
-export const toggleFavoriteAction = async (prevState:{
+export const toggleFavoriteAction = async (prevState: {
   favoriteId: string | null;
   landmarkId: string;
   pathname: string;
-})=>{
+}) => {
+  const { favoriteId, landmarkId, pathname } = prevState;
   const user = await getAuthUser();
-  const {favoriteId, landmarkId, pathname} = prevState;
-  try {   
-
-    //delete favorite
-    if(favoriteId){
-        await db.favorite.delete({ 
-          where:{
-            id: favoriteId
-          }
-        })
-        }
-        else{
-          await db.favorite.create({
-            data:{
-              landmarkId,
-              profileId:user.id
-            }
-          })
-        }
-        revalidatePath(pathname)
-        return {message:favoriteId? "remove favorite": "add favorite"}
-
-    
+  try {
+    // Delete
+    if (favoriteId) {
+      await db.favorite.delete({
+        where: {
+          id: favoriteId,
+        },
+      });
+    } else {
+      // Create
+      await db.favorite.create({
+        data: {
+          landmarkId: landmarkId,
+          profileId: user.id,
+        },
+      });
+    }
+    revalidatePath(pathname);
+    return {
+      message: favoriteId ? "Removed Favorite Success" : "Add Favorite Success",
+    };
   } catch (error) {
     return renderError(error);
   }
-}
+};
 
-export const fetchFavorite = async () => {
+export const fetchFavorits = async () => {
   const user = await getAuthUser();
   const favorites = await db.favorite.findMany({
     where: {
       profileId: user.id,
     },
-    select:{
-      landmark:{
-        select:{
-          id: true, 
+    select: {
+      landmark: {
+        select: {
+          id: true,
           name: true,
           description: true,
           image: true,
@@ -185,13 +193,28 @@ export const fetchFavorite = async () => {
           province: true,
           lat: true,
           lng: true,
-          category: true
-        }
-      }
-    }
+          category: true,
+        },
+      },
+    },
   });
-  return favorites.map((favorite)=>favorite.landmark);
+  return favorites.map((favorite) => favorite.landmark);
+};
+
+
+
+export const fetchLandmarkDetail = async({id}:{id:string})=>{
+  // code body
+  return db.landmark.findFirst({
+    where:{
+      id
+    },
+    include:{
+      profile:true
+    }
+  })
 }
+
 
 export const fetchMylandmark = async () => {
   const user = await getAuthUser();
@@ -213,38 +236,3 @@ export const fetchMylandmark = async () => {
   });
   return mylandmarks
 }
-
-
-export const fetchLandmarksHero = async () => {
-  try {
-    const landmark = await db.landmark.findMany({
-      take: 4,
-      orderBy: {
-        createdAt: "desc",
-      },
-    });
-    return landmark;
-  } catch (error) {
-    return renderError(error);
-  }
-
- 
-};
-
-
-export const fetchLandmarkDetail = async({id}:{id:string})=>{
-  // code body
-  return db.landmark.findFirst({
-    where:{
-      id
-    },
-    include:{
-      profile:true
-    }
-  })
-}
-
-
-
-
-
