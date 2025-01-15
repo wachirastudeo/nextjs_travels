@@ -1,3 +1,4 @@
+'use client';
 import { useFormStatus } from "react-dom";
 import { Button } from "@/components/ui/button";
 import { Heart, RotateCw } from "lucide-react";
