@@ -1,18 +1,15 @@
 {
   "compilerOptions": {
-    "baseUrl": "src",
-
+    "baseUrl": "src",  // ตั้ง base URL เป็น src เพื่อให้สามารถใช้ path แบบ relative ได้ง่าย
     "paths": {
-      "@/*": ["*"],
-      "components/*": ["components/*"],
-      "types/*": ["types/*"],
-      "actions/*":["actions/*"],
-      "lib/*":["lib/*"],
-      "../*": ["components/*"],
-      "hooks/*":["hooks/*"],
-      "utils/*":["utils/*"],
-
-    }, 
+      "@/*": ["*"],            // alias @ ชี้ไปที่ src/
+      "components/*": ["components/*"],  // alias components ชี้ไปที่ src/components/
+      "types/*": ["types/*"],  // alias types ชี้ไปที่ src/types/
+      "actions/*": ["actions/*"],  // alias actions ชี้ไปที่ src/actions/
+      "lib/*": ["lib/*"],      // alias lib ชี้ไปที่ src/lib/
+      "hooks/*": ["hooks/*"],  // alias hooks ชี้ไปที่ src/hooks/
+      "utils/*": ["utils/*"]   // alias utils ชี้ไปที่ src/utils/
+    },
     "target": "ES2017",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
