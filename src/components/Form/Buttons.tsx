@@ -1,6 +1,6 @@
 "use client";
 import { useFormStatus } from "react-dom";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 import { Heart, RotateCw } from "lucide-react";
 import { SignInButton } from "@clerk/nextjs";
 

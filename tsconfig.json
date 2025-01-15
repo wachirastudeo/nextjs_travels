@@ -3,7 +3,7 @@
     "baseUrl": "./src",  // ตั้ง base URL เป็น src เพื่อให้สามารถใช้ path แบบ relative ได้ง่าย
     "paths": {
       "@/*": ["*"],            // alias @ ชี้ไปที่ src/
-      "components/*": ["components/*"],  // alias components ชี้ไปที่ src/components/
+      "components/*": ["components/*"], 
       "types/*": ["types/*"],  // alias types ชี้ไปที่ src/types/
       "actions/*": ["actions/*"],  // alias actions ชี้ไปที่ src/actions/
       "lib/*": ["lib/*"],      // alias lib ชี้ไปที่ src/lib/

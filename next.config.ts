@@ -27,6 +27,7 @@ const nextConfig: NextConfig = {
   // ตั้งค่า path alias เพื่อใช้ในการ import path แบบสั้น
   webpack(config) {
     config.resolve.alias['@'] = path.resolve(__dirname, 'src');  // Alias @ ชี้ไปที่ src/
+    
     config.resolve.alias['components'] = path.resolve(__dirname, 'src/components');  // Alias สำหรับ components/
     config.resolve.alias['utils'] = path.resolve(__dirname, 'src/utils');  // Alias สำหรับ utils/
     return config;
