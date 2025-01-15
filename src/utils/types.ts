@@ -1,9 +1,8 @@
 
 export type actionFunction = (
-  prevState: any,
+  prevState: { formValues: string },  // ระบุประเภทให้ชัดเจน
   formData: FormData
 ) => Promise<{ message: string }>;
-
 
 export type LandmarkCardProps = {
   id: string;

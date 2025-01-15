@@ -30,7 +30,7 @@ const renderError = (error: unknown): { message: string } => {
 };
 
 export const createProfileAction = async (
-  prevState: any,
+  prevState: undefined,
   formData: FormData
 ) => {
   try {
@@ -67,7 +67,7 @@ export const createProfileAction = async (
 
 
 export const createLandmarkAction = async (
-  prevState: any,
+  prevState: undefined,
   formData: FormData
 ): Promise<{ message: string }> => {
   try {

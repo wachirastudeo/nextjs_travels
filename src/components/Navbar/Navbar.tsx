@@ -2,7 +2,6 @@ import { Darkmode } from "./DarkMode"
 import DropdownListMenu from "./DropdownListMenu"
 import Logo from "./Logo"
 import Search from "./Search"
-import SignOut from "./SignOut"
 
 
 const Navbar = () => {

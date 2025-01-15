@@ -1,6 +1,5 @@
 import { LandmarkCardProps } from "@/utils/types";
 import LandmarkCard from "../card/LandmarkCard";
-import LoaddingCard from "../card/LoaddingCard";
 
 const LandmarkList = ({ landmarks }: { landmarks: LandmarkCardProps[] }) => {
 
