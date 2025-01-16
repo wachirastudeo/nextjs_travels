@@ -1,22 +1,5 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",  
-    "paths": {
-      "@/*": ["./src/*"],
-      "@components/*": ["components/*"]
-    }
-
-    // }
-    // "paths": {
-    //   "@/*": ["*"],            // alias @ ชี้ไปที่ src/
-    //   "components/*": ["components/*"], 
-    //   "types/*": ["types/*"],  // alias types ชี้ไปที่ src/types/
-    //   "actions/*": ["actions/*"],  // alias actions ชี้ไปที่ src/actions/
-    //   "lib/*": ["lib/*"],      // alias lib ชี้ไปที่ src/lib/
-    //   "hooks/*": ["hooks/*"],  // alias hooks ชี้ไปที่ src/hooks/
-    //   "utils/*": ["utils/*"]   // alias utils ชี้ไปที่ src/utils/
-    // },
-    ,
     "target": "ES2017",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
@@ -35,17 +18,10 @@
         "name": "next"
       }
     ],
-    "types": ["node"]
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts",
-    "app/**/*.ts",
-    "app/**/*.tsx",
-    "src/**/*.ts",
-    "src/**/*.tsx"
-  ],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
 }
