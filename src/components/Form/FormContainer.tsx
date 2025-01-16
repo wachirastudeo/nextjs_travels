@@ -10,7 +10,7 @@ const initialState = {
   formValues: {},
 };
 
-const FormContainer = ({ action, children }: {
+const Formcontainer = ({ action, children }: {
   action: ActionFunction; // Ensure ActionFunction matches useActionState expectations
   children: React.ReactNode;
 }) => {
@@ -28,4 +28,4 @@ const FormContainer = ({ action, children }: {
   return <form action={formAction}>{children}</form>;
 };
 
-export default FormContainer;
+export default Formcontainer;

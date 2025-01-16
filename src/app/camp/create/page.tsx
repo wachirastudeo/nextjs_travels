@@ -1,6 +1,6 @@
 import { createLandmarkAction } from "@/actions/actions";
 import Categoryinput from "src/components/form/Categoryinput";
-import FormContainer from "src/components/form/FormContainer";
+import FormContainer from "@/components/form/Formcontainer";
 import FormInput from "@/components/form/FormInput";
 import Imageinput from "@/components/form/Imageinput";
 import Provinceinput from "@/components/form/Provinceinput";

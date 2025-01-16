@@ -1,8 +1,8 @@
 "use client";
 import { toggleFavoriteAction } from "@/actions/actions"
-import FormContainer from "src/components/form/FormContainer"
 import { usePathname } from "next/navigation";
 import CardSubmitButton from "src/components/form/CardSubmitButton";
+import Formcontainer from "../form/Formcontainer";
 interface FavoriteToggleFormProps {
     favoriteId: string | null;
     landmarkId: string;
@@ -22,10 +22,12 @@ const FavoriteToggleForm = ({
 
     return (
         <div>
-            <FormContainer action={toggleAction} >
+            <Formcontainer action={toggleAction} >
                 <CardSubmitButton isFavorite={!!favoriteId} />
 
-            </FormContainer>
+            </Formcontainer>
+
+
         </div>
     )
 }
