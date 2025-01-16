@@ -1,31 +1,43 @@
 "use client";
+
 import { useActionState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { useEffect } from "react";
-import { ActionFunction } from "@/utils/types"; // Updated to use consistent naming
+import { ActionFunction } from "@/utils/types"; // Ensure this type is defined correctly
 
-// Ensure initialState matches expected state structure in useActionState
 const initialState = {
   message: "",
   formValues: {},
 };
 
-const Formcontainer = ({ action, children }: {
-  action: ActionFunction; // Ensure ActionFunction matches useActionState expectations
+const FormContainer = ({
+  action,
+  children,
+}: {
+  action: ActionFunction; // Ensure this matches the useActionState type expectations
   children: React.ReactNode;
 }) => {
   const { toast } = useToast();
 
-  // Ensure action and initialState align with useActionState definition
   const [state, formAction] = useActionState(action, initialState);
 
   useEffect(() => {
     if (state.message) {
       toast({ description: state.message });
     }
-  }, [state, toast]); // Ensure dependencies are correct
+  }, [state.message, toast]);
 
-  return <form action={formAction}>{children}</form>;
+  return (
+    <form
+      onSubmit={(event) => {
+        event.preventDefault(); // Prevent default form submission
+        const formData = new FormData(event.currentTarget); // Extract form data
+        formAction(formData); // Pass the FormData to formAction
+      }}
+    >
+      {children}
+    </form>
+  );
 };
 
-export default Formcontainer;
+export default FormContainer;

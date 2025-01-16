@@ -1,6 +1,6 @@
 import { createProfileAction } from "@/actions/actions";
 import { SubmitButton } from "@/components/form/Buttons";
-import FormContainer from "@/components/form/Formcontainer";
+import FormContainer from "@/components/form/FormContainer";
 import FormInput from "@/components/form/FormInput";
 import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
