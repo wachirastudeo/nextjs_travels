@@ -30,3 +30,10 @@ const CreateProfile = async () => {
   );
 };
 export default CreateProfile;
+
+// const page = () => {
+//   return (
+//     <div>page</div>
+//   )
+// }
+// export default page

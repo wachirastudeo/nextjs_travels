@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
   },
 
   // ตั้งค่าควบคุม strict mode ของ React
-  reactStrictMode: true, // เปิด React Strict Mode
+  reactStrictMode: false, // เปิด React Strict Mode
 
   // ตั้งค่า images ให้สามารถโหลดภาพจากแหล่งที่มาภายนอก
   images: {
@@ -25,8 +25,6 @@ const nextConfig: NextConfig = {
 
   
 
-  // ตั้งค่าการลบข้อผิดพลาดในการ build
-  ignoreBuildErrors: true,  // ให้ตรวจสอบข้อผิดพลาดในระหว่างการ build
 };
 
 export default nextConfig;

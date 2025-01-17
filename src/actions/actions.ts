@@ -78,7 +78,6 @@ export const createLandmarkAction = async (
     // Step 2 Upload Image to Supabase
     const fullPath = await uploadFile(validatedFile.image);
     // console.log(fullPath);
-    // Step 3 Insert to DB
     await db.landmark.create({
       data: {
         ...validateField,
